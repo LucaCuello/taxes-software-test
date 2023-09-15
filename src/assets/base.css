@@ -46,6 +46,8 @@
 :root {
   /* Color palette */
   --background-color: #f8f1e8;
+  --main-color: #836953;
+  --paragraph-color: rgb(26, 24, 24);
   --book-color-variant1: #d8e2dc;
   --book-color-variant2: #f5ebe0;
   --book-color-variant3: #ded6ce;

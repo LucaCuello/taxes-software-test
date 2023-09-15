@@ -38,11 +38,11 @@ onMounted(() => {
 
 <template>
   <main>
-    <img src="logo.svg" />
+    <img src="logo.svg" class="page-logo" draggable="false" alt="logo of the page" />
     <h1>Welcome to BookBuddy!</h1>
     <p>
-      Easily organize and display your favorite books by name and authors. Explore your literary
-      world at a glance.
+      Let's get started on building your book collection! Please enter the author's name and the
+      book's title below to begin displaying your books on the shelf.
     </p>
   </main>
   <form @submit.prevent="submitForm">
@@ -69,13 +69,5 @@ onMounted(() => {
 
 <style>
 @import url('../src/assets/base.css');
-body {
-  background-color: var(--background-color);
-}
-h1 {
-  font-family: var(--avenir-font-black);
-}
-p {
-  font-family: var(--minion-font-regular);
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap');
 </style>

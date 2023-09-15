@@ -1,0 +1,89 @@
+body {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--background-color);
+}
+
+h1 {
+  font-family: var(--avenir-font-black);
+  font-size: 40px;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--main-color);
+  letter-spacing: -2px;
+}
+p {
+  font-family: var(--minion-font-regular);
+  color: var(--paragraph-color);
+  width: 65ch;
+  text-align: center;
+  letter-spacing: 1px;
+  word-spacing: 1px;
+  line-height: 22px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-logo {
+  width: 120px;
+  height: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+form input,
+form textarea,
+form button {
+  font-family: 'Montserrat', sans-serif;
+  padding: 10px 5px;
+  width: 100%;
+  background-color: transparent;
+  resize: none;
+  border: none;
+}
+
+form input:focus,
+form textarea:focus,
+form button:focus {
+  outline: none;
+}
+
+#book-name {
+  border: 1px solid rgba(0, 0, 0, 0.13);
+}
+
+#book-author,
+#description,
+form button {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+  border-right: 1px solid rgba(0, 0, 0, 0.13);
+  border-left: 1px solid rgba(0, 0, 0, 0.13);
+}
+
+form textarea {
+  padding: 10px 5px 50px 5px;
+}
+
+form button {
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+form button:hover {
+  background-color: var(--main-color);
+  color: white;
+  transition: all 200ms ease;
+}
