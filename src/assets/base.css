@@ -1,0 +1,68 @@
+@font-face {
+  font-family: 'Avenir Black';
+  src:
+    url('../fonts/Avenir/avenirltstd-black-webfont.woff2') format('woff2'),
+    url('../fonts/Avenir/avenirltstd-black-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Book';
+  src:
+    url('../fonts/Avenir/avenirltstd-book-webfont.woff2') format('woff2'),
+    url('../fonts/Avenir/avenirltstd-book-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Roman';
+  src:
+    url('../fonts/Avenir/avenirltstd-roman-webfont.woff2') format('woff2'),
+    url('../fonts/Avenir/avenirltstd-roman-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Minion Regular';
+  src:
+    url('../fonts/Minion/minion-regular-webfont.woff2') format('woff2'),
+    url('../fonts/Minion/minion-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Minion Italic';
+  src:
+    url('../fonts/Minion/minion-it-webfont.woff2') format('woff2'),
+    url('../fonts/Minion/minion-it-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  /* Color palette */
+  --background-color: #f8f1e8;
+  --book-color-variant1: #d8e2dc;
+  --book-color-variant2: #f5ebe0;
+  --book-color-variant3: #ded6ce;
+  --book-color-varian4: #fae1dd;
+  --book-color-varian5: #f8edeb;
+  /* Fonts */
+  --avenir-font-black: Avenir Black;
+  --avenir-font-book: Avenir Book;
+  --avenir-font-roman: Avenir Roman;
+  --minion-font-regular: Minion Regular;
+  --minion-font-italic: Minion Italic;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
