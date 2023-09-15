@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { type bookObject } from './types/Types'
 
 const bookName = ref(''),
   bookAuthor = ref(''),
-  bookDescription = ref('')
+  bookDescription = ref(''),
+  bookList = ref([] as bookObject[])
 
 const submitForm = () => {
   const item: bookObject = {
@@ -18,14 +19,21 @@ const submitForm = () => {
 }
 
 const saveToLocalStorage = (book: bookObject) => {
-  localStorage.setItem('ListOfBooks', JSON.stringify(book))
+  const { name, author } = book
+  if (name.trim() === '' || author.trim() === '') return
+
+  bookList.value = [...bookList.value, book]
+  localStorage.setItem('ListOfBooks', JSON.stringify(bookList.value))
 }
 
 const clearFormValues = () => {
-  bookName.value = ''
-  bookAuthor.value = ''
-  bookDescription.value = ''
+  const fieldsToClear = [bookName, bookAuthor, bookDescription]
+  fieldsToClear.forEach((field) => (field.value = ''))
 }
+
+onMounted(() => {
+  bookList.value = JSON.parse(localStorage.getItem('ListOfBooks') as string) || []
+})
 </script>
 
 <template>
@@ -51,6 +59,12 @@ const clearFormValues = () => {
     ></textarea>
     <button type="submit">Add to the collection</button>
   </form>
+
+  <!-- <template v-for="book in bookList" :key="book.name">
+    <h1>{{ book.name }}</h1>
+    <h1>{{ book.author }}</h1>
+    <p>{{ book.description }}</p>
+  </template> -->
 </template>
 
 <style>
