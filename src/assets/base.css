@@ -48,11 +48,11 @@
   --background-color: #f8f1e8;
   --main-color: #836953;
   --paragraph-color: rgb(26, 24, 24);
-  --book-color-variant1: #d8e2dc;
-  --book-color-variant2: #f5ebe0;
-  --book-color-variant3: #ded6ce;
-  --book-color-varian4: #fae1dd;
-  --book-color-varian5: #f8edeb;
+  --book-color-peppermint: #d8e2dc;
+  --book-color-yellow: #f5ebe0;
+  --book-color-apricot: #ded6ce;
+  --book-color-peach: #fae1dd;
+  --book-color-lavender: #e3dee5;
   /* Fonts */
   --avenir-font-black: Avenir Black;
   --avenir-font-book: Avenir Book;

@@ -5,12 +5,14 @@ import { type bookObject } from '../types/Types'
 const bookName = ref(''),
   bookAuthor = ref(''),
   bookDescription = ref(''),
+  bookColor = ref(''),
   bookList = ref([] as bookObject[])
 
 const submitForm = () => {
   const item: bookObject = {
     name: bookName.value,
     author: bookAuthor.value,
+    color: bookColor.value,
     description: bookDescription.value
   }
 
@@ -27,7 +29,7 @@ const saveToLocalStorage = (book: bookObject) => {
 }
 
 const clearFormValues = () => {
-  const fieldsToClear = [bookName, bookAuthor, bookDescription]
+  const fieldsToClear = [bookName, bookAuthor, bookDescription, bookColor]
   fieldsToClear.forEach((field) => (field.value = ''))
 }
 
@@ -44,6 +46,53 @@ onMounted(() => {
     <label for="book-author">
       <input type="text" id="book-author" placeholder="Book author" v-model="bookAuthor" />
     </label>
+    <div class="test">
+      <span>Book color:</span>
+      <div class="bookshelf-color-container">
+        <input
+          type="radio"
+          id="peppermint"
+          value="book-color-peppermint"
+          name="bookshelf-color"
+          v-model="bookColor"
+          checked
+        />
+        <label for="peppermint" class="peppermint">Peppermint</label>
+        <input
+          type="radio"
+          id="yellow"
+          value="book-color-yellow"
+          name="bookshelf-color"
+          v-model="bookColor"
+        />
+        <label for="yellow" class="yellow">Yellow</label>
+        <input
+          type="radio"
+          id="apricot"
+          value="book-color-apricot"
+          name="bookshelf-color"
+          v-model="bookColor"
+        />
+        <label for="apricot" class="apricot">Apricot</label>
+        <input
+          type="radio"
+          id="peach"
+          value="book-color-peach"
+          name="bookshelf-color"
+          v-model="bookColor"
+        />
+        <label for="peach" class="peach">Peach</label>
+        <input
+          type="radio"
+          id="lavender"
+          value="book-color-lavender"
+          name="bookshelf-color"
+          v-model="bookColor"
+        />
+        <label for="lavender" class="lavender">Lavender</label>
+      </div>
+    </div>
+
     <textarea
       id="description"
       placeholder="Description (Optional)"
@@ -53,7 +102,7 @@ onMounted(() => {
   </form>
   <div class="book-container">
     <template v-for="book in bookList" :key="book.name">
-      <div class="book">
+      <div class="book" :class="book.color">
         <div class="book-title-container">
           <img src="logo.svg" />
           <span class="book-name">{{ book.name }}</span>
@@ -74,6 +123,70 @@ export default {
 </script>
 
 <style scoped>
+.test {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+  border-right: 1px solid rgba(0, 0, 0, 0.13);
+  border-left: 1px solid rgba(0, 0, 0, 0.13);
+}
+.test span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: #4b6164;
+  padding: 10px 5px;
+}
+
+.bookshelf-color-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+}
+
+.bookshelf-color-container input {
+  display: none;
+}
+
+.bookshelf-color-container label {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  width: 100%;
+  height: 100%;
+}
+.peppermint,
+.book-color-peppermint {
+  background-color: var(--book-color-peppermint);
+}
+
+.yellow,
+.book-color-yellow {
+  background-color: var(--book-color-yellow);
+}
+
+.apricot,
+.book-color-apricot {
+  background-color: var(--book-color-apricot);
+}
+
+.peach,
+.book-color-peach {
+  background-color: var(--book-color-peach);
+}
+
+.lavender,
+.book-color-lavender {
+  background-color: var(--book-color-lavender);
+}
+
+.bookshelf-color-container input:checked + label {
+  box-shadow: 0px 2px var(--main-color);
+}
+
 .book-container {
   display: flex;
   justify-content: center;
@@ -88,7 +201,6 @@ export default {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  background-color: var(--book-color-variant1);
   width: 50px;
   height: 420px;
   gap: 15px;
