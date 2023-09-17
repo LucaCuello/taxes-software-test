@@ -60,7 +60,7 @@ onMounted(() => {
     <label for="book-author">
       <input type="text" id="book-author" placeholder="Book author" v-model="bookAuthor" />
     </label>
-    <div class="test">
+    <div class="book-color-container">
       <span>Book color:</span>
       <div class="bookshelf-color-container">
         <input
@@ -132,6 +132,7 @@ onMounted(() => {
           <v-icon name="bi-bookmark-check" class="read-btn" @click="markAsRead(index)" />
         </template>
         <v-icon name="bi-trash" class="delete-btn" @click="removeBook(book)" />
+        <p class="book-description">{{ book.description }}</p>
         <div class="book-author-container">
           <div class="line"></div>
           <span class="book-author">{{ book.author }}</span>
@@ -148,14 +149,14 @@ export default {
 </script>
 
 <style scoped>
-.test {
+.book-color-container {
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid rgba(0, 0, 0, 0.13);
   border-right: 1px solid rgba(0, 0, 0, 0.13);
   border-left: 1px solid rgba(0, 0, 0, 0.13);
 }
-.test span {
+.book-color-container span {
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   color: #4b6164;
@@ -227,6 +228,7 @@ export default {
   align-items: center;
   flex-direction: column;
   position: relative;
+  overflow: hidden;
   width: 50px;
   height: 420px;
   gap: 15px;
@@ -294,6 +296,14 @@ export default {
   font-family: var(--minion-font-italic);
   font-weight: 800;
 }
+
+.book-description {
+  position: absolute;
+  width: 100%;
+  padding: 0px 10px;
+  font-size: 14px;
+  opacity: 0;
+}
 .book img {
   width: 40px;
   height: auto;
@@ -317,10 +327,16 @@ export default {
 .book:hover span {
   writing-mode: horizontal-tb;
   transition: all 600ms ease-in;
-  animation: test 1s forwards;
+  animation: textOpacity 1s forwards;
 }
 
-@keyframes test {
+.book:hover p {
+  position: static;
+  opacity: 1;
+  transition: all 1s ease-in-out;
+}
+
+@keyframes textOpacity {
   0% {
     opacity: 0;
   }
