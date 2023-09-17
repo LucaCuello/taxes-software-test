@@ -95,3 +95,28 @@ form button:hover {
   color: white;
   transition: all 200ms ease;
 }
+
+.peppermint,
+.book-color-peppermint {
+  background-color: var(--book-color-peppermint);
+}
+
+.yellow,
+.book-color-yellow {
+  background-color: var(--book-color-yellow);
+}
+
+.sky,
+.book-color-sky {
+  background-color: var(--book-color-sky);
+}
+
+.peach,
+.book-color-peach {
+  background-color: var(--book-color-peach);
+}
+
+.lavender,
+.book-color-lavender {
+  background-color: var(--book-color-lavender);
+}
