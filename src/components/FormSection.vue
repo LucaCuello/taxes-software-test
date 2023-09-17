@@ -5,7 +5,7 @@ import { type bookObject } from '../types/Types'
 const bookName = ref(''),
   bookAuthor = ref(''),
   bookDescription = ref(''),
-  bookColor = ref(''),
+  bookColor = ref('book-color-peppermint'),
   bookList = ref([] as bookObject[])
 
 const submitForm = () => {
@@ -13,9 +13,11 @@ const submitForm = () => {
     name: bookName.value,
     author: bookAuthor.value,
     color: bookColor.value,
-    description: bookDescription.value
+    description: bookDescription.value,
+    read: false
   }
 
+  console.log(item)
   saveToLocalStorage(item)
   clearFormValues()
 }
@@ -29,8 +31,20 @@ const saveToLocalStorage = (book: bookObject) => {
 }
 
 const clearFormValues = () => {
-  const fieldsToClear = [bookName, bookAuthor, bookDescription, bookColor]
+  const fieldsToClear = [bookName, bookAuthor, bookDescription]
+  bookColor.value = 'book-color-peppermint'
   fieldsToClear.forEach((field) => (field.value = ''))
+}
+
+const removeBook = (selectedBook: {}) => {
+  bookList.value = bookList.value.filter((book) => book !== selectedBook)
+  localStorage.setItem('ListOfBooks', JSON.stringify(bookList.value))
+}
+
+const markAsRead = (index: number) => {
+  const book = bookList.value[index]
+  book.read = !book.read
+  localStorage.setItem('ListOfBooks', JSON.stringify(bookList.value))
 }
 
 onMounted(() => {
@@ -68,12 +82,12 @@ onMounted(() => {
         <label for="yellow" class="yellow">Yellow</label>
         <input
           type="radio"
-          id="apricot"
-          value="book-color-apricot"
+          id="sky"
+          value="book-color-sky"
           name="bookshelf-color"
           v-model="bookColor"
         />
-        <label for="apricot" class="apricot">Apricot</label>
+        <label for="sky" class="sky">Sky</label>
         <input
           type="radio"
           id="peach"
@@ -101,12 +115,23 @@ onMounted(() => {
     <button type="submit">Add to the collection</button>
   </form>
   <div class="book-container">
-    <template v-for="book in bookList" :key="book.name">
+    <template v-for="(book, index) in bookList" :key="book.name">
       <div class="book" :class="book.color">
         <div class="book-title-container">
-          <img src="logo.svg" />
+          <img src="logo.svg" draggable="false" alt="book logo" />
           <span class="book-name">{{ book.name }}</span>
         </div>
+        <template v-if="book.read">
+          <v-icon
+            name="bi-bookmark-check-fill"
+            class="read-btn read-filled"
+            @click="markAsRead(index)"
+          />
+        </template>
+        <template v-else>
+          <v-icon name="bi-bookmark-check" class="read-btn" @click="markAsRead(index)" />
+        </template>
+        <v-icon name="bi-trash" class="delete-btn" @click="removeBook(book)" />
         <div class="book-author-container">
           <div class="line"></div>
           <span class="book-author">{{ book.author }}</span>
@@ -168,9 +193,9 @@ export default {
   background-color: var(--book-color-yellow);
 }
 
-.apricot,
-.book-color-apricot {
-  background-color: var(--book-color-apricot);
+.sky,
+.book-color-sky {
+  background-color: var(--book-color-sky);
 }
 
 .peach,
@@ -201,6 +226,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+  position: relative;
   width: 50px;
   height: 420px;
   gap: 15px;
@@ -209,6 +235,30 @@ export default {
   transition: all 200ms ease;
 }
 
+.delete-btn,
+.read-btn {
+  position: absolute;
+  cursor: pointer;
+  opacity: 0;
+  right: 15px;
+  color: var(--main-color);
+  transition: all 200ms ease;
+}
+
+.read-btn {
+  right: unset;
+  left: 15px;
+}
+
+.read-btn:hover {
+  transform: scale(1.2);
+  transition: all 200ms ease;
+}
+
+.delete-btn:hover {
+  transform: scale(1.2);
+  transition: all 200ms ease;
+}
 .book-title-container {
   display: flex;
   flex-direction: column;
@@ -231,6 +281,7 @@ export default {
   color: #00000094;
   writing-mode: vertical-rl;
   text-orientation: mixed;
+  text-align: center;
 }
 
 .book-name {
@@ -256,6 +307,11 @@ export default {
 .book:hover {
   width: 250px;
   transition: all 200ms ease;
+}
+
+.book:hover .delete-btn,
+.book:hover .read-btn {
+  opacity: 1;
 }
 
 .book:hover span {

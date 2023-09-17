@@ -3,4 +3,5 @@ export type bookObject = {
   author: string
   color: string
   description?: string
+  read?: boolean
 }
