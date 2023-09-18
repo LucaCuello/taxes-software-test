@@ -15,7 +15,16 @@ const { bookList, removeBook, markAsRead } = defineProps<{
       <template v-for="(book, index) in bookList" :key="book.name">
         <div class="book" :class="book.color">
           <div class="book-title-container">
-            <img :src="logo" draggable="false" alt="book logo" />
+            <Transition name="pop">
+              <template v-if="book.read">
+                <div class="check-container">
+                  <v-icon name="bi-check-lg" class="check-btn" />
+                </div>
+              </template>
+              <template v-else>
+                <img :src="logo" draggable="false" alt="book logo" />
+              </template>
+            </Transition>
             <span class="book-name">{{ book.name }}</span>
           </div>
           <template v-if="book.read">
@@ -85,6 +94,20 @@ export default {
   right: 15px;
   color: var(--main-color);
   transition: all 200ms ease;
+}
+
+.check-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(108, 151, 108, 0.144);
+}
+.check-btn {
+  color: rgb(108, 151, 108);
+  z-index: 1;
 }
 
 .read-btn {
@@ -192,6 +215,19 @@ export default {
 
 .fade-enter-to {
   opacity: 1;
+}
+
+.pop-enter-from,
+.pop-leave-to {
+  transform: scale(0);
+}
+
+.pop-enter-to {
+  transform: scale(1);
+}
+
+.pop-enter-active {
+  transition: transform 200ms ease;
 }
 
 .fade-enter-active {
