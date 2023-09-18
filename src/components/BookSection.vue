@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { type bookObject } from '../types/Types'
+import logo from '@/assets/logo.svg'
 
 const { bookList, removeBook, markAsRead } = defineProps<{
   bookList: bookObject[]
@@ -14,7 +15,7 @@ const { bookList, removeBook, markAsRead } = defineProps<{
       <template v-for="(book, index) in bookList" :key="book.name">
         <div class="book" :class="book.color">
           <div class="book-title-container">
-            <img src="logo.svg" draggable="false" alt="book logo" />
+            <img :src="logo" draggable="false" alt="book logo" />
             <span class="book-name">{{ book.name }}</span>
           </div>
           <template v-if="book.read">

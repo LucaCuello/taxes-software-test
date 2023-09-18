@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import FormSection from './FormSection.vue'
+import logo from '@/assets/logo.svg'
 </script>
 
 <template>
   <Transition appear>
     <main>
       <div class="main-container">
-        <img src="logo.svg" class="page-logo" draggable="false" alt="logo of the page" />
+        <img :src="logo" class="page-logo" draggable="false" alt="logo of the page" />
         <h1>Welcome to BookBuddy!</h1>
         <p>
           Let's get started on building your book collection! Please enter the author's name and the
