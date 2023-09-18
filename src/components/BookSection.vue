@@ -54,6 +54,7 @@ export default {
   gap: 30px;
   width: 100%;
   max-width: 1000px;
+  flex-wrap: wrap;
 }
 .book {
   display: flex;
@@ -63,10 +64,15 @@ export default {
   position: relative;
   overflow: hidden;
   width: 50px;
-  height: 420px;
+  height: 400px;
   gap: 15px;
   border-radius: 15px 15px 0px 0px;
   padding: 15px 0;
+  transition: all 200ms ease;
+}
+
+.book:hover {
+  width: 250px;
   transition: all 200ms ease;
 }
 
@@ -122,19 +128,22 @@ export default {
 .book-name {
   font-family: var(--avenir-font-book);
   font-weight: 800;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .book-author {
   font-family: var(--minion-font-italic);
   font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
 }
 
 .book-description {
   position: absolute;
+  user-select: none;
   width: 100%;
   padding: 0px 10px;
-  font-size: 14px;
+  font-size: 12px;
   opacity: 0;
 }
 .book img {
@@ -145,11 +154,6 @@ export default {
   width: 100%;
   height: 1px;
   background-color: #00000041;
-}
-
-.book:hover {
-  width: 250px;
-  transition: all 200ms ease;
 }
 
 .book:hover .delete-btn,

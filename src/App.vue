@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import MainSection from './components/MainSection.vue'
-import FormSection from './components/FormSection.vue'
 </script>
 
 <template>
   <MainSection />
-  <FormSection />
 </template>
 
 <style>
