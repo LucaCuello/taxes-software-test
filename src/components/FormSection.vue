@@ -2,6 +2,9 @@
 import { ref, onMounted } from 'vue'
 import { type bookObject } from '../types/Types'
 import BookSection from './BookSection.vue'
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 
 const bookName = ref(''),
   bookAuthor = ref(''),
@@ -26,6 +29,9 @@ const saveToLocalStorage = (book: bookObject) => {
   const { name, author } = book
   if (name.trim() === '' || author.trim() === '') return
 
+  toast.success('Book added!', {
+    timeout: 1500
+  })
   bookList.value = [...bookList.value, book]
   localStorage.setItem('ListOfBooks', JSON.stringify(bookList.value))
 }
@@ -39,6 +45,9 @@ const clearFormValues = () => {
 const removeBook = (selectedBook: {}) => {
   bookList.value = bookList.value.filter((book) => book !== selectedBook)
   localStorage.setItem('ListOfBooks', JSON.stringify(bookList.value))
+  toast.info('The book has been removed.', {
+    timeout: 1500
+  })
 }
 
 const markAsRead = (index: number) => {
