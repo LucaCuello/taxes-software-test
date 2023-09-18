@@ -10,30 +10,32 @@ const { bookList, removeBook, markAsRead } = defineProps<{
 
 <template>
   <div class="book-container">
-    <template v-for="(book, index) in bookList" :key="book.name">
-      <div class="book" :class="book.color">
-        <div class="book-title-container">
-          <img src="logo.svg" draggable="false" alt="book logo" />
-          <span class="book-name">{{ book.name }}</span>
+    <TransitionGroup name="fade">
+      <template v-for="(book, index) in bookList" :key="book.name">
+        <div class="book" :class="book.color">
+          <div class="book-title-container">
+            <img src="logo.svg" draggable="false" alt="book logo" />
+            <span class="book-name">{{ book.name }}</span>
+          </div>
+          <template v-if="book.read">
+            <v-icon
+              name="bi-bookmark-check-fill"
+              class="read-btn read-filled"
+              @click="markAsRead(index)"
+            />
+          </template>
+          <template v-else>
+            <v-icon name="bi-bookmark-check" class="read-btn" @click="markAsRead(index)" />
+          </template>
+          <v-icon name="bi-trash" class="delete-btn" @click="removeBook(book)" />
+          <p class="book-description">{{ book.description }}</p>
+          <div class="book-author-container">
+            <div class="line"></div>
+            <span class="book-author">{{ book.author }}</span>
+          </div>
         </div>
-        <template v-if="book.read">
-          <v-icon
-            name="bi-bookmark-check-fill"
-            class="read-btn read-filled"
-            @click="markAsRead(index)"
-          />
-        </template>
-        <template v-else>
-          <v-icon name="bi-bookmark-check" class="read-btn" @click="markAsRead(index)" />
-        </template>
-        <v-icon name="bi-trash" class="delete-btn" @click="removeBook(book)" />
-        <p class="book-description">{{ book.description }}</p>
-        <div class="book-author-container">
-          <div class="line"></div>
-          <span class="book-author">{{ book.author }}</span>
-        </div>
-      </div>
-    </template>
+      </template>
+    </TransitionGroup>
   </div>
 </template>
 
@@ -167,6 +169,8 @@ export default {
   transition: all 1s ease-in-out;
 }
 
+/* Animations */
+
 @keyframes textOpacity {
   0% {
     opacity: 0;
@@ -174,5 +178,18 @@ export default {
   100% {
     opacity: 1;
   }
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-to {
+  opacity: 1;
+}
+
+.fade-enter-active {
+  transition: opacity 300ms ease;
 }
 </style>
