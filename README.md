@@ -26,4 +26,4 @@ npm run dev
 
 ## Live deploy
 
-[➡️Click here to visit vercel deploy](https://book-buddy-9amlm5y9v-lukeraig.vercel.app)
+[➡️Click here to visit vercel deploy](https://book-buddy-i1x326wy8-lukeraig.vercel.app/)
