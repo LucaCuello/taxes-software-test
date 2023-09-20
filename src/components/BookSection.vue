@@ -233,4 +233,13 @@ export default {
 .fade-enter-active {
   transition: opacity 300ms ease;
 }
+
+.fade-move {
+  transition: all 200ms ease-out;
+}
+
+.fade-leave-active {
+  position: absolute;
+  transition: all 300ms ease-out;
+}
 </style>
