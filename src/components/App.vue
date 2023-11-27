@@ -19,12 +19,6 @@ import logo from '@/assets/logo.svg'
   </Transition>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'MainSection'
-}
-</script>
-
 <style scoped>
 .v-enter-active,
 .v-leave-active {

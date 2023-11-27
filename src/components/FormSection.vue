@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { type bookObject } from '../types/Types'
 import BookSection from './BookSection.vue'
@@ -27,7 +27,16 @@ const submitForm = () => {
 
 const saveToLocalStorage = (book: bookObject) => {
   const { name, author } = book
-  if (name.trim() === '' || author.trim() === '') return
+  if (name.trim() === '' || author.trim() === '') {
+    return toast.warning('Please, fill all the inputs', {
+      timeout: 1200,
+      position: 'top-center',
+      hideProgressBar: false,
+      closeButton: false,
+      maxToasts: 1,
+      newestOnTop: true
+    })
+  }
 
   toast.success('Book added!', {
     timeout: 1500
@@ -125,12 +134,6 @@ onMounted(() => {
   </form>
   <BookSection :book-list="bookList" :mark-as-read="markAsRead" :remove-book="removeBook" />
 </template>
-
-<script lang="ts">
-export default {
-  name: 'FormSection'
-}
-</script>
 
 <style scoped>
 .book-color-container {

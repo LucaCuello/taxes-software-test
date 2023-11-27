@@ -1,14 +1,3 @@
-<script lang="ts" setup>
-import { type bookObject } from '../types/Types'
-import logo from '@/assets/logo.svg'
-
-const { bookList, removeBook, markAsRead } = defineProps<{
-  bookList: bookObject[]
-  removeBook: (selectedBook: {}) => void
-  markAsRead: (index: number) => void
-}>()
-</script>
-
 <template>
   <div class="book-container">
     <TransitionGroup name="fade">
@@ -49,10 +38,15 @@ const { bookList, removeBook, markAsRead } = defineProps<{
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'BookSection'
-}
+<script lang="ts" setup>
+import { type bookObject } from '../types/Types'
+import logo from '@/assets/logo.svg'
+
+const { bookList, removeBook, markAsRead } = defineProps<{
+  bookList: bookObject[]
+  removeBook: (selectedBook: {}) => void
+  markAsRead: (index: number) => void
+}>()
 </script>
 
 <style scoped>

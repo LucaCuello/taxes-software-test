@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import MainSection from './components/MainSection.vue'
+import App from './components/App.vue'
 </script>
 
 <template>
-  <MainSection />
+  <App />
 </template>
 
 <style>
