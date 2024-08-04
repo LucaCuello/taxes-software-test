@@ -1,29 +1,45 @@
-# BookBuddy: Description
+# Taxes Software [Prueba técnica]
 
-This project was created as a technical test for a job selection process. It was made entirely on VueJS 3 and TypeScript.
-The project itself is a digital bookshelf where you can add books by name and author and immediately see them displayed on the page as virtual books. Once you have your book collection, you can choose to delete a book or mark it as read.
-For this project I've learnt the basics of vue 3 composition api, eventhandlers, implementation of components and how to make animations using the native transition component.
+## Deploy en Vercel
 
-## Recommended IDE Setup
+Para visitar el deploy en vercel, [hacer click aquí.](https://bookbuddyshelf.vercel.app/)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Instalar el proyecto
 
-## How to install the app
+Para correr el proyecto en local, se debe realizar:
 
-Clone this repository and then run:
-
-```sh
+```bash
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-Once installed, run the following command:
-
-```sh
 npm run dev
+
 ```
 
-## Live deploy
+## Requisitos de la prueba
 
-[➡️Click here to visit vercel deploy](https://book-buddy-i1x326wy8-lukeraig.vercel.app/)
+Interfaz de usuario:
+• Un campo de entrada para agregar el título del libro.
+• Un segundo campo de entrada para agregar el autor del libro.
+• Un botón para añadir el libro ingresado a la colección.
+• Una lista que muestre todos los libros añadidos con su título y autor.
+• Cada libro en la lista debe tener un botón "Eliminar" para borrarlo de la colección.
+
+Funcionalidad:
+• Al hacer clic en el botón de añadir, el libro con su título y autor debe ser añadido a la
+lista de la colección.
+• Al hacer clic en el botón de "Eliminar" en un libro, dicho libro debe ser eliminado de la
+lista.
+
+Diseño y Presentación:
+• La aplicación debe tener un diseño moderno y atractivo.
+• Se debe considerar la experiencia del usuario al interactuar con la aplicación.
+• Se pueden usar frameworks o bibliotecas de CSS como Bootstrap, Tailwind CSS, entre
+otros, para mejorar la presentación.
+• Se valorará positivamente la atención al detalle y la creatividad en el diseño.
+
+Bonus:
+• Implementar persistencia local utilizando localStorage para que la colección no se
+pierda al recargar la página.
+• Permitir marcar libros como "Leídos". Los libros marcados deben mostrarse de manera
+diferente (por ejemplo, con un ícono o color diferente).
+• Implementar un filtro para ver todos los libros, solo los libros leídos, o solo los libros
+pendientes de leer.
